@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+import BentoCard from "./BentoCard.astro";
+import { getCollection } from "astro:content";
+
+const categories = await getCollection("category");
+
+
+
+const bentoCardStyle = "col-span-1 min-h-72 dark:bg-brand-white-200 bg-brand-green-300 text-brand-white-100 dark:text-brand-green-500 flex flex-col p-4 text-brand-green-400 text-base justify-center items-center rounded-lg"
+---
+
+
+<div class="grid col-span-full grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-full my-20">
+    {
+        categories.map((category, index) => {
+            const color = category.data.color;
+            return (
+        <BentoCard
+            href={`/${category.id}`}
+            class={`${color} ${bentoCardStyle} ${index === 0 ? 'lg:col-span-2' : ''}`} 
+            title={category.data.label}
+        >
+        <Icon name={category.data.icon} slot="icon" class="w-16 h-16" />
+        </BentoCard>
+        )
+        })
+    }
+   
+</div>

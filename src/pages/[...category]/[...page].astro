@@ -1,0 +1,87 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import SectionTitle from "../../components/ui/SectionTitle.astro";
+import ResourceCard from "../../components/ui/ResourceCard.astro";
+import Pagination from "../../components/ui/Pagination.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+interface Props {
+    page: {
+        data: CollectionEntry<'resource'>[];
+        start: number;
+        end: number;
+        size: number;
+        total: number;
+        currentPage: number;
+        lastPage: number;
+        url: {
+            current: string;
+            next: string | undefined;
+            prev: string | undefined;
+        }
+    }
+}
+
+
+export async function getStaticPaths({paginate}: GetStaticPathsOptions) {
+    const categories = await getCollection("category")
+    const allResources = await getCollection("resource")
+    return categories.flatMap((category) => {
+        const filteredResources = allResources.filter((resource) => resource.data.category.id === category.id)
+        return paginate(filteredResources, {
+            params: {category: category.id},
+            pageSize: 6
+        })
+    })
+}
+
+const {page } = Astro.props;
+const {category} = Astro.params
+const categoryObj = await getCollection("category", (cat) => {
+    return cat.id === category
+
+})
+---
+
+<Layout
+    title={`${category}`}
+    description={`All resources in the categoria category`}
+>
+
+<main>
+    <div class="main-content">
+        <SectionTitle title={category} description={categoryObj[0].data?.description ?? `All resources in the ${category} category`} />
+        <div data-pagefind-body class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {page.data.map((resource) => (
+                <ResourceCard {...resource} />
+            ))}
+    </div>
+    {page.data.length === 0 && (
+        <p class="text-center text-2xl text-brand-white-500  dark:text-brand-white-100 mt-10 p-4 bg-brand-white-100 dark:bg-brand-white-300 min-h-44 flex justify-center items-center">No resources found</p>
+    )}
+    {page.lastPage > 1 && (
+    <Pagination
+        length={page.lastPage} 
+        currentUrl={page.url.current} 
+        currentPage={page.currentPage} 
+        firstUrl={`/${category}`} 
+        prevUrl={page.url.prev} 
+        nextUrl={page.url.next} 
+        lastUrl={`/${category}/${page.lastPage}`}
+    />
+    )}
+</main>
+
+</Layout>
+
+
+
+<style>
+      .main-content {
+    @apply max-w-screen-xl lg:mx-auto mx-5 ;
+  }
+  main {
+    @apply mt-20 mb-20;
+  }
+</style>
