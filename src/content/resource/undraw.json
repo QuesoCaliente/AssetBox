@@ -1,0 +1,11 @@
+{
+  "name": "unDraw",
+  "url": "https://undraw.co/illustrations",
+  "keywords": ["illustrations", "svg", "free", "opensource"],
+  "image": "https://cdn.quesocaliente.dev/undrawpreview.png",
+  "category": "illustrations",
+  "license": {
+    "name": "Free to use",
+    "url": "https://undraw.co/license"
+  }
+}

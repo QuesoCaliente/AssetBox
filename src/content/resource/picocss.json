@@ -1,0 +1,11 @@
+{
+  "name": "Pico CSS",
+  "url": "https://picocss.com/",
+  "keywords": ["illustrations", "svg", "free", "opensource"],
+  "image": "https://cdn.quesocaliente.dev/picocsspreview.png",
+  "category": "css",
+  "license": {
+    "name": "MIT",
+    "url": "https://github.com/picocss/pico/blob/main/LICENSE.md"
+  }
+}

@@ -45,8 +45,9 @@ const categoryObj = await getCollection("category", (cat) => {
 ---
 
 <Layout
-    title={`${category}`}
+    title={`${category.replace(/\b\w/g, l => l.toUpperCase())} - AssetBox`}
     description={`All resources in the categoria category`}
+    
 >
 
 <main>

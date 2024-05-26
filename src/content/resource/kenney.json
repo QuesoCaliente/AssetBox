@@ -1,0 +1,11 @@
+{
+  "name": "Kenney",
+  "url": "https://kenney.nl/",
+  "keywords": ["game", "assets", "free", "2d", "3d"],
+  "image": "https://cdn.quesocaliente.dev/kenneypreview.png",
+  "category": "3d",
+  "license": {
+    "name": "CC0 1.0 Universal",
+    "url": "https://www.kenney.nl/support"
+  }
+}

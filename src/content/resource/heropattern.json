@@ -1,0 +1,11 @@
+{
+  "name": "Hero Patterns",
+  "url": "https://heropatterns.com/",
+  "keywords": ["illustrations", "svg", "free", "opensource"],
+  "image": "https://cdn.quesocaliente.dev/heropatternpreview.png",
+  "category": "backgrounds",
+  "license": {
+    "name": "CC-BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  }
+}
