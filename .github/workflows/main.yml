@@ -6,7 +6,6 @@ on:
 
 jobs:
   create-pr:
-    # Solo corre si la etiqueta 'auto-pr' está presente
     if: contains(github.event.issue.labels.*.name, 'auto-pr')
     runs-on: ubuntu-latest
 
@@ -14,7 +13,28 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Crear PR con archivo desde issue
+    - name: Crear archivo JSON desde body del issue
+      run: |
+        mkdir -p src/content/resource
+        echo '${{ github.event.issue.body }}' > src/content/resource/archivo-issue-${{ github.event.issue.number }}.json
+
+    - name: Configurar git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Crear rama nueva
+      run: git checkout -b issue-${{ github.event.issue.number }}
+
+    - name: Añadir archivo y hacer commit
+      run: |
+        git add src/content/resource/archivo-issue-${{ github.event.issue.number }}.json
+        git commit -m "Añadir archivo desde issue #${{ github.event.issue.number }}"
+
+    - name: Subir rama
+      run: git push origin issue-${{ github.event.issue.number }}
+
+    - name: Crear Pull Request
       uses: peter-evans/create-pull-request@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -22,7 +42,4 @@ jobs:
         commit-message: "Añadir archivo desde issue #${{ github.event.issue.number }}"
         title: "PR automática issue #${{ github.event.issue.number }}"
         body: "PR creada automáticamente a partir del issue #${{ github.event.issue.number }}"
-        changes: |
-          src/content/resource/archivo-issue-${{ github.event.issue.number }}.json <<EOF
-          ${{ github.event.issue.body }}
-          EOF
+        base: main
