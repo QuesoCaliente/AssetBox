@@ -1,0 +1,28 @@
+name: Crear PR desde Issue con etiqueta
+
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  create-pr:
+    # Solo corre si la etiqueta 'auto-pr' está presente
+    if: contains(github.event.issue.labels.*.name, 'auto-pr')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Crear PR con archivo desde issue
+      uses: peter-evans/create-pull-request@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: issue-${{ github.event.issue.number }}
+        commit-message: "Añadir archivo desde issue #${{ github.event.issue.number }}"
+        title: "PR automática issue #${{ github.event.issue.number }}"
+        body: "PR creada automáticamente a partir del issue #${{ github.event.issue.number }}"
+        changes: |
+          src/content/resource/archivo-issue-${{ github.event.issue.number }}.json <<EOF
+          ${{ github.event.issue.body }}
+          EOF
