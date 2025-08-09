@@ -1,5 +1,9 @@
 name: Crear PR desde Issue con etiqueta
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   issues:
     types: [labeled]
