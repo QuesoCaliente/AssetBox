@@ -2,7 +2,7 @@ name: Crear PR desde Issue con etiqueta
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
 
 jobs:
   create-pr:
