@@ -23,6 +23,7 @@ jobs:
         echo '${{ github.event.issue.body }}' > temp_body.json
         slug=$(jq -r '.slug' temp_body.json)
         echo '${{ github.event.issue.body }}' > src/content/resource/${slug}.json
+        rm temp_body.json
 
     - name: Crear PR
       uses: peter-evans/create-pull-request@v4
