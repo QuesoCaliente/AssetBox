@@ -20,7 +20,9 @@ jobs:
     - name: Crear archivo JSON desde body del issue
       run: |
         mkdir -p src/content/resource
-        echo '${{ github.event.issue.body }}' > src/content/resource/archivo-issue-${{ github.event.issue.number }}.json
+        echo '${{ github.event.issue.body }}' > temp_body.json
+        slug=$(jq -r '.slug' temp_body.json)
+        echo '${{ github.event.issue.body }}' > src/content/resource/${slug}.json
 
     - name: Crear PR
       uses: peter-evans/create-pull-request@v4
