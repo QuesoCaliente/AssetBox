@@ -1,25 +1,27 @@
 ---
 interface Props {
-	title: string
-	description: string
-	canonical?: string
-	image?: string
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
 }
 
 const {
-	title,
-	description,
-	canonical,
-	image = `${Astro.url}/og.jpg`,
-} = Astro.props
-
+  title,
+  description,
+  canonical,
+  image = `${Astro.url}/og.jpg`,
+} = Astro.props;
 
 const CanonicalUrl = () => {
-	if (Astro.url.host.includes("localhost")) return "http://localhost:4321"
-	return canonical || Astro.url.pathname
-}
+  if (Astro.url.host.includes("localhost")) return "http://localhost:4321";
+  return canonical || Astro.url.pathname;
+};
 
-const canonicalURL = new URL(CanonicalUrl(), Astro.site)
+const canonicalURL = new URL(
+  CanonicalUrl(),
+  Astro.site ?? "assetbox-production.up.railway.app"
+);
 ---
 
 <title>{title}</title>
@@ -29,7 +31,10 @@ const canonicalURL = new URL(CanonicalUrl(), Astro.site)
 <link rel="canonical" href={canonicalURL} />
 <meta name="viewport" content="width=device-width" />
 
-<meta name="keywords" content="quesocaliente, desarrollo web, frontend, diseño ux" />
+<meta
+  name="keywords"
+  content="quesocaliente, desarrollo web, frontend, diseño ux"
+/>
 
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
@@ -51,5 +56,5 @@ const canonicalURL = new URL(CanonicalUrl(), Astro.site)
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
 <script src="/pagefind/pagefind-ui.js" is:inline></script>
