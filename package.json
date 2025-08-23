@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "build:pagefind": "pnpm exec pagefind --site dist && mkdir -p public/pagefind && cp -r dist/pagefind/. public/pagefind/",
+    "build:pagefind": "pagefind --site dist && cpx dist/pagefind public/",
     "preview": "astro preview",
     "astro": "astro"
   },
