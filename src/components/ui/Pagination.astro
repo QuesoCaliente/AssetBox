@@ -13,26 +13,22 @@ const { length, currentPage, prevUrl, nextUrl } = Astro.props;
   </span>
   <!-- Buttons -->
   <div class="flex gap-2 mt-2 xs:mt-0">
-    <a class={`${!prevUrl ? "disabled" : "active"}`} href={prevUrl}>
+    <a
+      class={`${!prevUrl ? "bg-zinc-300 text-zinc-500 cursor-not-allowed" : "active"} shadow-lg flex items-center justify-center px-4 h-10 text-base font-medium`}
+      href={prevUrl}
+    >
       Previous
     </a>
-    <button class="active">
+    <button
+      class="text-white bg-brand-green-300 dark:bg-brand-green-200 dark:text-brand-white-100 shadow-lg flex items-center justify-center px-4 h-10 text-base font-medium"
+    >
       {currentPage}
     </button>
-    <a class={`${!nextUrl ? "disabled" : "active"}`} href={nextUrl}> Next </a>
+    <a
+      class={`${!nextUrl ? "bg-zinc-300 text-zinc-500 cursor-not-allowed" : "text-white bg-brand-green-300 dark:bg-brand-green-200 dark:text-brand-white-100"} shadow-lg flex items-center justify-center px-4 h-10 text-base font-medium`}
+      href={nextUrl}
+    >
+      Next
+    </a>
   </div>
 </nav>
-
-<style>
-  @reference '../../../src/styles/global.css';
-  button,
-  a {
-    @apply shadow-lg flex items-center justify-center px-4 h-10 text-base font-medium;
-  }
-  .disabled {
-    @apply bg-zinc-300 text-zinc-500 cursor-not-allowed;
-  }
-  .active {
-    @apply text-white bg-brand-green-300 dark:bg-brand-green-200 dark:text-brand-white-100;
-  }
-</style>

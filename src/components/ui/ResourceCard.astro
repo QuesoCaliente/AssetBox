@@ -8,7 +8,9 @@ const {
 } = Astro.props;
 ---
 
-<article class="group">
+<article
+  class="group rounded-lg overflow-hidden shadow-lg border dark:hover:border-brand-green-100 border-transparent hover:border-brand-green-200"
+>
   <div class="relative overflow-hidden">
     <a target="_blank" href={url}>
       <img
@@ -37,10 +39,3 @@ const {
     }
   </div>
 </article>
-
-<style>
-  @reference '../../../src/styles/global.css'
-    article {
-    @apply rounded-lg overflow-hidden shadow-lg border dark:hover:border-brand-green-100 border-transparent hover:border-brand-green-200;
-  }
-</style>

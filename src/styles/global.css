@@ -1,4 +1,17 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@layer utilities {
+  .dark #search input[type="text"] {
+    @apply bg-brand-white-200 text-gray-900 focus:ring-blue-500 focus:border-blue-500;
+  }
+  /* No se puede usar @apply en pseudo-elementos, así que se mantiene CSS puro */
+  .dark #search form::before {
+    background-color: #111827; /* bg-gray-900 */
+  }
+  .dark #search button {
+    @apply bg-transparent text-gray-900;
+  }
+}
 
 @custom-variant dark (&:is(.dark *));
 

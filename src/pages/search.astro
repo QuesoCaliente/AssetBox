@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 export const prerender = false;
 
 const q = Astro.url.searchParams.get("q") ?? undefined;
+console.log(q);
 ---
 
 <Layout title="Search" description="Search for articles on this site">
@@ -21,16 +22,3 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
     });
   </script>
 </Layout>
-
-<style is:global>
-  @reference '../../../src/styles/global.css'
-    .dark #search input[type="text"] {
-    @apply bg-brand-white-200 text-gray-900 focus:ring-blue-500 focus:border-blue-500;
-  }
-  .dark #search form::before {
-    @apply !bg-gray-900;
-  }
-  .dark #search button {
-    @apply bg-transparent! text-gray-900;
-  }
-</style>
