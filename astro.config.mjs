@@ -3,7 +3,7 @@ import icon from "astro-icon";
 import preact from "@astrojs/preact";
 import tailwindcss from "@tailwindcss/vite";
 
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,11 +13,5 @@ export default defineConfig({
 
   integrations: [icon(), preact({ compat: true })],
   output: "static",
-
-  adapter: node({
-    mode: "standalone",
-  }),
-  server: {
-    host: "0.0.0.0",
-  },
+  adapter: vercel(),
 });
