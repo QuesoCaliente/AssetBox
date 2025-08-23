@@ -1,18 +1,16 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<'article'> {
-    title: string;
-    href?: string;
-
+interface Props extends HTMLAttributes<"article"> {
+  title: string;
+  href?: string;
 }
-const {title, class: estilos, href, ...rest} = Astro.props;
+const { title, class: estilos, href, ...rest } = Astro.props;
 ---
 
-
 <a href={href}>
-<article class={estilos} {...rest}>
-    <slot name="icon"/>
+  <article class={estilos} {...rest}>
+    <slot name="icon" />
     <h1 class="text-xl">{title}</h1>
-</article>
+  </article>
 </a>
