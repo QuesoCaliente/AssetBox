@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "build:pagefind": "pagefind --site dist && cpx dist/pagefind public/",
+    "build:pagefind": "pnpm exec pagefind --site dist && mkdir -p public/pagefind && cp -r dist/pagefind/. public/pagefind/",
+    "build:pagefind:win": "pnpm exec pagefind --site dist && mkdir public\\pagefind && cpx \"dist/pagefind/**/*\" public/pagefind",
+    "build:pagefind:linux": "pnpm exec pagefind --site dist && mkdir -p public/pagefind && cp -r dist/pagefind/. public/pagefind/",
     "preview": "astro preview",
     "astro": "astro"
   },
