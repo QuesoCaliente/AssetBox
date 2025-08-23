@@ -13,5 +13,6 @@ export default defineConfig({
 
   integrations: [icon(), preact({ compat: true })],
   output: "static",
+  site: "https://asset-box-nine.vercel.app/",
   adapter: vercel(),
 });
