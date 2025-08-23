@@ -1,37 +1,38 @@
 ---
-
 const { length, currentPage, prevUrl, nextUrl } = Astro.props;
 ---
 
 <nav aria-label="Resources Page" class="flex flex-col items-center pt-10">
-        <!-- Help text -->
-        <span class="text-sm text-gray-700 dark:text-gray-400">
-            Showing <span class="font-semibold text-gray-900 dark:text-white">{ currentPage }</span> of <span class="font-semibold text-gray-900 dark:text-white">{ length }</span> pages
-        </span>
-        <!-- Buttons -->
-        <div class="flex gap-2 mt-2 xs:mt-0">
-            <a class={`${!prevUrl ? 'disabled' : 'active'}`} href={prevUrl}>
-                Previous
-            </a>
-            <button class="active">
-               { currentPage }
-            </button>
-            <a class={`${!nextUrl ? 'disabled' : 'active'}`} href={nextUrl} >
-             Next
-            </a>
-        </div>
-    
+  <!-- Help text -->
+  <span class="text-sm text-gray-700 dark:text-gray-400">
+    Showing <span class="font-semibold text-gray-900 dark:text-white"
+      >{currentPage}</span
+    > of <span class="font-semibold text-gray-900 dark:text-white"
+      >{length}</span
+    > pages
+  </span>
+  <!-- Buttons -->
+  <div class="flex gap-2 mt-2 xs:mt-0">
+    <a class={`${!prevUrl ? "disabled" : "active"}`} href={prevUrl}>
+      Previous
+    </a>
+    <button class="active">
+      {currentPage}
+    </button>
+    <a class={`${!nextUrl ? "disabled" : "active"}`} href={nextUrl}> Next </a>
+  </div>
 </nav>
 
-
 <style>
-    button, a {
-        @apply shadow-lg flex items-center justify-center px-4 h-10 text-base font-medium
-    }
-    .disabled {
-        @apply bg-zinc-300 text-zinc-500 cursor-not-allowed
-    }
-    .active {
-        @apply text-white bg-brand-green-300 dark:bg-brand-green-200 dark:text-brand-white-100 
-    }
+  @reference '../../../src/styles/global.css';
+  button,
+  a {
+    @apply shadow-lg flex items-center justify-center px-4 h-10 text-base font-medium;
+  }
+  .disabled {
+    @apply bg-zinc-300 text-zinc-500 cursor-not-allowed;
+  }
+  .active {
+    @apply text-white bg-brand-green-300 dark:bg-brand-green-200 dark:text-brand-white-100;
+  }
 </style>
