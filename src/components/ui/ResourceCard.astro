@@ -9,20 +9,18 @@ const {
 ---
 
 <article
-  class="group rounded-lg overflow-hidden shadow-lg border dark:hover:border-brand-green-100 border-transparent hover:border-brand-green-200"
+  class="group rounded-lg overflow-hidden shadow-lg border bg-brand-green-300 dark:bg-brand-green-500 dark:hover:border-brand-green-100 border-transparent hover:border-brand-green-200"
 >
-  <div class="relative overflow-hidden">
+  <div class="relative overflow-hidden h-[250px]">
     <a target="_blank" href={url}>
       <img
-        class="w-full group-hover:scale-125 transition-transform duration-300 ease-in-out"
+        class="w-full group-hover:scale-125 object-cover transition-transform duration-300 ease-in-out"
         src={image}
         alt={name}
       />
     </a>
   </div>
-  <div
-    class="p-5 flex justify-between items-center bg-brand-green-300 dark:bg-brand-green-500"
-  >
+  <div class="p-5 flex justify-between">
     <a href={url} target="_blank" rel="noopener noreferrer">
       <h2 class="text-xl hover:underline text-brand-white-100 dark:text-white">
         {name}
