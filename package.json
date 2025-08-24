@@ -6,9 +6,6 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "build:pagefind": "pnpm exec pagefind --site dist && mkdir -p public/pagefind && cp -r dist/pagefind/. public/pagefind/",
-    "build:pagefind:win": "pnpm exec pagefind --site dist && mkdir public\\pagefind && cpx \"dist/pagefind/**/*\" public/pagefind",
-    "build:pagefind:linux": "pnpm exec pagefind --site dist && mkdir -p public/pagefind && cp -r dist/pagefind/. public/pagefind/",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -21,6 +18,7 @@
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.2",
     "astro-icon": "^1.1.0",
+    "fuse.js": "^7.1.0",
     "preact": "^10.21.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^4.1.12",

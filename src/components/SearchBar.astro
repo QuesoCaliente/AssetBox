@@ -1,0 +1,8 @@
+---
+import { getCollection } from "astro:content";
+import Search from "./preact/Search";
+
+const allResources = await getCollection("resource");
+---
+
+<Search client:load searchList={allResources} />

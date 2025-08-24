@@ -1,4 +1,5 @@
 ---
+import SearchBar from "../components/SearchBar.astro";
 import Layout from "../layouts/Layout.astro";
 
 export const prerender = false;
@@ -9,17 +10,6 @@ console.log(q);
 
 <Layout title="Search" description="Search for articles on this site">
   <main class="max-w-(--breakpoint-xl) lg:mx-auto mx-4 my-20">
-    <div id="search"></div>
+    <SearchBar />
   </main>
-  <script>
-    document.addEventListener("astro:page-load", () => {
-      // @ts-ignore
-      new PagefindUI({
-        element: "#search",
-        showSubResults: true,
-        autofocus: true,
-        base: "/",
-      });
-    });
-  </script>
 </Layout>
