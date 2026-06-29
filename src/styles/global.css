@@ -11,6 +11,131 @@
   .dark #search button {
     @apply bg-transparent text-gray-900;
   }
+
+  /* 3D hover effect for BentoCard category icons */
+  /* Based on Emil Kowalski's design engineering principles */
+  :root {
+    --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Font smoothing for better rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .perspective-distant {
+    perspective: 800px;
+  }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    isolation: isolate;
+    transition: transform 200ms var(--ease-out-strong),
+      box-shadow 200ms var(--ease-out-strong);
+  }
+
+  /* Subtle shadow border instead of border */
+  .card-3d article {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .card-3d article {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .card-3d:active {
+    transform: scale(0.97);
+  }
+
+  .card-3d:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 0.5rem;
+  }
+
+  .icon-3d {
+    transition: transform 200ms var(--ease-out-strong);
+    backface-visibility: hidden;
+  }
+
+  .icon-3d > * {
+    display: block;
+  }
+
+  /* Staggered entrance animation */
+  .card-3d {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: cardFadeIn 300ms var(--ease-out-strong) forwards;
+  }
+
+  .card-3d:nth-child(1) { animation-delay: 0ms; }
+  .card-3d:nth-child(2) { animation-delay: 40ms; }
+  .card-3d:nth-child(3) { animation-delay: 80ms; }
+  .card-3d:nth-child(4) { animation-delay: 120ms; }
+  .card-3d:nth-child(5) { animation-delay: 160ms; }
+  .card-3d:nth-child(6) { animation-delay: 200ms; }
+  .card-3d:nth-child(7) { animation-delay: 240ms; }
+  .card-3d:nth-child(8) { animation-delay: 280ms; }
+  .card-3d:nth-child(9) { animation-delay: 320ms; }
+  .card-3d:nth-child(10) { animation-delay: 360ms; }
+  .card-3d:nth-child(11) { animation-delay: 400ms; }
+  .card-3d:nth-child(12) { animation-delay: 440ms; }
+
+  @keyframes cardFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Touch-first, hover-enhanced: only devices with real hover + fine pointer */
+  @media (hover: hover) and (pointer: fine) {
+    .card-3d:hover {
+      transform: translateY(-4px) rotateX(2deg);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.25),
+        0 6px 12px -4px rgba(0, 0, 0, 0.15);
+      will-change: transform;
+    }
+
+    .card-3d:hover:active {
+      transform: translateY(-4px) rotateX(2deg) scale(0.97);
+    }
+
+    .dark .card-3d:hover {
+      box-shadow: 0 16px 32px -8px rgba(255, 255, 255, 0.15),
+        0 6px 12px -4px rgba(255, 255, 255, 0.08);
+    }
+
+    .card-3d:hover .icon-3d {
+      transform: translateZ(20px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-3d {
+      opacity: 1;
+      animation: none;
+      transform: none;
+      transition-duration: 0s;
+    }
+
+    .card-3d:hover,
+    .dark .card-3d:hover,
+    .card-3d:active,
+    .card-3d:hover:active {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .icon-3d,
+    .card-3d:hover .icon-3d {
+      transition-duration: 0s;
+      transform: none;
+    }
+  }
 }
 
 @custom-variant dark (&:is(.dark *));

@@ -6,11 +6,11 @@ import { getCollection } from "astro:content";
 const categories = await getCollection("category");
 
 const bentoCardStyle =
-  "col-span-1 min-h-72 dark:bg-brand-white-200 bg-brand-green-300 text-brand-white-100 dark:text-brand-green-500 flex flex-col p-4 text-brand-green-400 text-base justify-center items-center rounded-lg";
+  "col-span-1 min-h-72 dark:bg-brand-white-200 bg-brand-green-300 text-brand-white-100 dark:text-brand-green-500 flex flex-col p-4 text-brand-green-400 text-base justify-center items-center rounded-xl";
 ---
 
 <div
-  class="grid col-span-full grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-full my-20"
+  class="grid col-span-full grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 h-full my-20 perspective-distant"
 >
   {
     categories.map((category, index) => {
