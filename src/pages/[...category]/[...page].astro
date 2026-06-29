@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import SectionTitle from "../../components/ui/SectionTitle.astro";
 import ResourceCard from "../../components/ui/ResourceCard.astro";
 import Pagination from "../../components/ui/Pagination.astro";
+import BackButton from "../../components/ui/BackButton.astro";
 import type { GetStaticPathsOptions } from "astro";
 
 interface Props {
@@ -50,6 +51,9 @@ const categoryObj = await getCollection("category", (cat) => {
 >
   <main transition:name="main" class="mt-20 mb-20">
     <div class="max-w-screen-xl lg:mx-auto mx-5">
+      <div class="mb-6">
+        <BackButton href="/" label="Back to categories" />
+      </div>
       <SectionTitle
         title={category}
         description={categoryObj[0].data?.description ??
