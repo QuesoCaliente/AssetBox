@@ -26,9 +26,9 @@ const { title, description, image, canonical } = Astro.props;
     <ViewTransitions />
   </head>
   <body class="min-h-screen dark:bg-brand-green-400 bg-brand-white-100">
-    <Header />
+    <Header transition:persist />
     <slot />
-    <Footer />
+    <Footer transition:persist />
   </body>
 </html>
 
@@ -50,6 +50,33 @@ const { title, description, image, canonical } = Astro.props;
 </style>
 
 <script is:inline>
+  // Hardware acceleration detection
+  // Test if the browser can handle GPU-accelerated animations smoothly
+  const detectHardwareAcceleration = () => {
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = 100;
+      canvas.height = 100;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return false;
+      
+      // Measure rendering performance
+      const start = performance.now();
+      for (let i = 0; i < 100; i++) {
+        ctx.clearRect(0, 0, 100, 100);
+        ctx.fillStyle = `rgb(${i},${i},${i})`;
+        ctx.fillRect(0, 0, 100, 100);
+      }
+      const elapsed = performance.now() - start;
+      
+      // If it takes more than 16ms for 100 iterations, likely no HW acceleration
+      return elapsed < 16;
+    } catch {
+      return false;
+    }
+  };
+
+  // Theme detection (existing)
   const theme = (() => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");
@@ -66,6 +93,11 @@ const { title, description, image, canonical } = Astro.props;
     document.documentElement.classList.add("dark");
   }
   window.localStorage.setItem("theme", theme);
+
+  // Hardware acceleration check
+  if (!detectHardwareAcceleration()) {
+    document.documentElement.classList.add("no-hw-accel");
+  }
 </script>
 
 <style is:global>

@@ -136,6 +136,34 @@
       transform: none;
     }
   }
+
+  /* Disable expensive animations when hardware acceleration is off */
+  .no-hw-accel .card-3d {
+    opacity: 1;
+    animation: none;
+    transform: none;
+    transition-duration: 0s;
+  }
+
+  .no-hw-accel .card-3d:hover,
+  .no-hw-accel .dark .card-3d:hover,
+  .no-hw-accel .card-3d:active,
+  .no-hw-accel .card-3d:hover:active {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .no-hw-accel .icon-3d,
+  .no-hw-accel .card-3d:hover .icon-3d {
+    transition-duration: 0s;
+    transform: none;
+  }
+
+  /* Disable View Transitions animations when no HW acceleration */
+  .no-hw-accel::view-transition-old(*),
+  .no-hw-accel::view-transition-new(*) {
+    animation-duration: 0s !important;
+  }
 }
 
 @custom-variant dark (&:is(.dark *));

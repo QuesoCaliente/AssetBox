@@ -48,7 +48,7 @@ const categoryObj = await getCollection("category", (cat) => {
   title={`${category.replace(/\b\w/g, (l) => l.toUpperCase())} - AssetBox`}
   description={`All resources in the categoria category`}
 >
-  <main class="mt-20 mb-20">
+  <main transition:name="main" class="mt-20 mb-20">
     <div class="max-w-screen-xl lg:mx-auto mx-5">
       <SectionTitle
         title={category}
